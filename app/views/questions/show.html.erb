@@ -6,20 +6,21 @@
       <time datetime="<%= @question.created_at %>">
         <small><%= @question.created_at %></small>
       </time>
-      <p class="lead  my-2">
+      <h2 class="lead fw-bold">
         <%= @question.body %>
-      </p>
+      </h2>
     </section>
 
 
-
-    <%= link_to 'Main', questions_path, class: 'btn btn-primary' %>
-    <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-secondary' %>
-    <%= link_to 'Delete', question_path(@question), class: 'btn btn-danger',
-                data: { method: :delete, confirm: 'Are you sure?' } %>
+    <div class='btn-group'>
+      <%= link_to 'Main', questions_path, class: 'btn btn-primary btn-sm' %>
+      <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-secondary btn-sm' %>
+      <%= link_to 'Delete', question_path(@question), class: 'btn btn-danger btn-sm',
+                  data: { method: :delete, confirm: 'Are you sure?' } %>
+    </div>
 
     <hr class="my-3">
-    <h2>Write your answer</h2>
+    <h3 class>Write your answer</h3>
 
     <%= render 'shared/errors', object: @answer %>
 
@@ -36,8 +37,30 @@
       <%= f.submit "Submit Answer!", class: 'btn btn-primary' %>
     <% end %>
 
+    <h2 class="mt-5">Answers</h2>
+    <% @answers.each do |answer| %>
+      <article class="card mb-3">
+        <div class="card-body row">
+          <div class=col-12>
+            <time datetime="<%= answer.created_at %>">
+              <small><%= answer.created_at %></small>
+            </time>
+            <div class="row">
+              <div class="col-6">
+                <h2 class="lead  my-2">
+                  <%= answer.body %>
+                </h2>
+              </div>
 
-
+              <div class="col-6 d-grid gap-2 d-md-flex justify-content-md-end">
+                <%= link_to 'Edit', edit_question_answer_path(@question, answer), class: "btn btn-secondary" %>
+                <%= link_to 'Delete', question_answer_path(@question, answer), data: { method: :delete, confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    <% end %>
 
   </div>
 </article>
