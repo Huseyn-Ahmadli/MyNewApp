@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :find_question!, only: %i[show delete edit update]
   def index
-    @questions = Question.all
+    @questions = Question.all.order(created_at: :desc).page params[:page]
   end
 
   def new

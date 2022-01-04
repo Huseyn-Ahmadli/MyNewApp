@@ -6,9 +6,9 @@
       <time datetime="<%= @question.created_at %>">
         <small><%= @question.created_at %></small>
       </time>
-      <h2 class="lead fw-bold">
-        <%= @question.body %>
-      </h2>
+      <div class="lead my-3 fw-bold">
+        <%= strip_tags @question.body %>
+      </div>
     </section>
 
 
@@ -38,29 +38,8 @@
     <% end %>
 
     <h2 class="mt-5">Answers</h2>
-    <% @answers.each do |answer| %>
-      <article class="card mb-3">
-        <div class="card-body row">
-          <div class=col-12>
-            <time datetime="<%= answer.created_at %>">
-              <small><%= answer.created_at %></small>
-            </time>
-            <div class="row">
-              <div class="col-6">
-                <h2 class="lead  my-2">
-                  <%= answer.body %>
-                </h2>
-              </div>
 
-              <div class="col-6 d-grid gap-2 d-md-flex justify-content-md-end">
-                <%= link_to 'Edit', edit_question_answer_path(@question, answer), class: "btn btn-secondary" %>
-                <%= link_to 'Delete', question_answer_path(@question, answer), data: { method: :delete, confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-    <% end %>
+    <%= render partial: 'answers/answer', collection: @answers, as: :answer, locals: { question: @question } %>
 
   </div>
 </article>
