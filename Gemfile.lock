@@ -60,6 +60,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.9.3)
       msgpack (~> 1.0)
@@ -176,6 +177,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap
   cssbundling-rails
   debug
@@ -183,7 +185,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   kaminari (~> 1.2)
-  pg (~> 1.1)
+  pg
   puma (~> 5.0)
   rails (~> 7.0.0)
   sprockets-rails
